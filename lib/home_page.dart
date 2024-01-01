@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          HabitTitle(),
+          HabitTitle(habitName: 'Exercise'),
         ],
       ),
     );

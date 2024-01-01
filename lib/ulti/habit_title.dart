@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class HabitTitle extends StatelessWidget {
-  const HabitTitle({Key? key}) : super(key: key);
+  final String habitName;
+
+  const HabitTitle({Key? key, required this.habitName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +16,41 @@ class HabitTitle extends StatelessWidget {
           color: Colors.grey[200],
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                // habit name
-                Text(
-                  'Exercise',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                Container(
+                  width: 40,
+                  height: 40,
+                  child: Stack(children: [
+                    //progress circle
+                    CircularPercentIndicator(
+                      radius: 20,
+                      percent: 0.7,
+                    ),
+                    //play/pause button
+                    Center(child: Icon(Icons.play_arrow)),
+                  ]),
                 ),
-                SizedBox(height: 10),
-                // progress
-                Text(
-                  '02:00/10 = 20%',
-                  style: TextStyle(color: Colors.grey),
+                const SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // habit name
+                    Text(
+                      habitName,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    SizedBox(height: 10),
+                    // progress
+                    Text(
+                      '02:00/10 = 20%',
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
+                  ],
                 ),
               ],
             ),
